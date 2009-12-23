@@ -4,6 +4,8 @@
 # =======
 # watchr one.watchr model_name
 
+fail "\n\nError! Please pass in a class name (ex. post, post_controller)\n\n" if ARGV.size == 1
+
 def print_stats(time, &block)
   $stdout.puts "File Changed. Re-running specs..."
   start_time = time.call
@@ -23,5 +25,4 @@ $stdout.puts "Now watching #{@class_name}_spec.rb"
 watch("spec/.*/#{@class_name}_spec\.rb") { |md| 
   print_stats(@time) { system("spec #{@spec_options} #{md[0]}") }
 }
-
 
